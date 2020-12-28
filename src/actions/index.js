@@ -3,9 +3,16 @@ import jsonPlaceHolder from '../apis/jsonPlaceholder';
 
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   await dispatch(fetchPosts());
-  const userIds = lodash.uniq(lodash.map(getState().posts, 'userId'));
+  //const userIds = lodash.uniq(lodash.map(getState().posts, 'userId'));
   //console.log(userIds);
-  userIds.forEach((id) => dispatch(fetchUser(id)));
+  //userIds.forEach((id) => dispatch(fetchUser(id)));
+
+  lodash
+    .chain(getState().posts) //chain special method that it passes the return value of previous method as a first argument
+    .map('userId')
+    .uniq()
+    .forEach((id) => dispatch(fetchUser(id)))
+    .value(); //in order to execute chaing methods
 };
 
 export const fetchPosts = () => async (dispatch) => {
