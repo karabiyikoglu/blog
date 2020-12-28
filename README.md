@@ -10,6 +10,10 @@ In the project directory, you can run:
 
 Installs the dependencies (redux, react-redux, axios, redux-thunk)
 
+### `npm install --save lodash`
+
+install lodash library in order to use memoize function
+
 ### `npm start`
 
 Runs the app in the development mode.\
